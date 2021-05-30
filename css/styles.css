@@ -138,6 +138,7 @@ color: var(--hover-color);
 }
 .menu-link {
   text-decoration: none;
+  /*transition: color 250ms var(--timing-func);*/
 }
 .current {
   position: relative;
