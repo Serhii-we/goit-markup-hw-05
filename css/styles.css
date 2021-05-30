@@ -9,6 +9,10 @@
   --end-color:#C4C4C4;
   --fill-color:#AFB1B8;
   --close-color:#000000;
+  --portfolio-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+    0px 4px 4px rgba(0, 0, 0, 0.06), 
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+  --timing-func: cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   font-family: 'Roboto', sans-serif;
@@ -138,8 +142,18 @@ color: var(--hover-color);
 .current {
   color: var(--hover-color)
 }
+  .current::after {
+  content: "";
+  position: absolute;
+  bottom: -38px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--hover-color);
+}
 .menu-item {
-  font-style: normal;
+  position: relative;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.4;
@@ -151,12 +165,12 @@ color: var(--hover-color);
 .tel-link {
   display: flex;
   align-items: center;
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: 0.02em;
   color: var(--second-color);
+  transition: color 250ms var(--timing-func);
 }
   .menu-link:hover,
   .menu-link:focus,
@@ -166,7 +180,7 @@ color: var(--hover-color);
   .tel-link:focus{
   color: var(--hover-color);
 }
-/* Герой */
+/*Герой*/
 .hero {
   padding-top: 200px;
   padding-bottom: 200px;
@@ -214,8 +228,9 @@ color: var(--hover-color);
   line-height: 1.87;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  transition: border-color 250ms var(--timing-func);
 }
-/* Особенности */
+/*Особенности*/
 .features{
   padding-bottom: 47px;
 }
@@ -290,6 +305,26 @@ color: var(--hover-color);
   margin-left: -30px;
   margin-top: -30px;
 }
+.doing-list .description-item {
+  position: absolute;
+  width: 370px;
+  height: 60px;
+  text-align: center;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(47, 48, 58, 0.8);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: var(--white-color);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 27px 0px;
+}
+.doing-list .doing-item {
+  position: relative;
+}
 .doing-item {
   margin-left: 30px;
   margin-top: 30px;
@@ -315,7 +350,7 @@ color: var(--hover-color);
   background-color: var(--white-color);
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 250ms linear;
+  transition: background-color 250ms var(--timing-func), color 250ms var(--timing-func);
 }
 .social-list-link:hover,
 .social-list-link:focus {
@@ -411,11 +446,11 @@ color: var(--hover-color);
   border: 1px solid var(--fill-color);
   box-sizing: border-box;
   border-radius: 4px;
-  transition: background-color 250ms linear;
+  transition: border-color 250ms var(--timing-func);
 }
 .clients-list-icon {
   fill: var(--fill-color);
-  transition: fill 250ms linear;
+  transition: fill 250ms var(--timing-func);
   /*filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));*/
 }
 .clients-list-link:hover,
@@ -455,7 +490,7 @@ color: var(--hover-color);
   width: 20px;
   height: 20px;
   fill: var(--fill-color);
-  transition: fill 250ms linear;
+  transition: fill 250ms var(--timing-func);
 }
 .network-list-item:not(:first-child) {
 margin-left: 10px;
@@ -470,7 +505,7 @@ margin-left: 10px;
   cursor: pointer;
   color: var(--fill-color);
   background-color: rgba(255, 255, 255, 0.1);
-  transition: background-color 250ms linear;
+  transition: background-color 250ms var(--timing-func);
 }
 .network-list-link:hover,
 .network-list-link:focus {
@@ -532,6 +567,7 @@ margin-left: 10px;
   font-size: 14px;
   line-height: 1.71;
   letter-spacing: 0.03em;
+  transition: color 250ms var(--timing-func);
 }
 .tel-link-two .contacts-two {
   color: rgba(255 255 255 0.6);
@@ -563,16 +599,20 @@ margin-left: 10px;
   margin-left: 30px;
   margin-top: 30px;
   flex-basis: calc((100% - 120px) / 9);
+  transition: box-shadow 250ms var(--timing-func);
 }
+
+.techno-item:hover ,
+.techno-item:focus{
+  box-shadow: var(--portfolio-shadow);
+}
+
 .card-container {
   padding: 20px 24px;
   border: 1px solid var(--border);
   box-sizing: border-box;
   border-top: 0;
   background-color: var(--white-color);
-  /*  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 
-  0px 4px 4px rgba(0, 0, 0, 0.06), 
-  1px 4px 6px rgba(0, 0, 0, 0.16);*/
 }
 /* Уникальный Контент */
 /* Кнопка*/
@@ -590,6 +630,10 @@ margin-left: 10px;
   cursor: pointer;
   border-radius: 4px;
   padding: 6px 22px;
+  transition: color 250ms var(--timing-func),
+  background-color 250ms var(--timing-func),
+  box-shadow 250ms var(--timing-func),
+  border-color 250ms var(--timing-func);
 }
 .btn-filter:hover,
 .btn-filter:active{
@@ -630,16 +674,15 @@ margin-left: 10px;
   line-height: 1.55;
   width: 100%;
   height: 100%;
-  overflow: auto;
   letter-spacing: 0.03em;
   transform: translateY(100%);
   background-color: rgba(33, 150, 243, 0.9);
   color: var(--white-color);
-  transition: transform 250ms linear;
+  transition: transform 250ms var(--timing-func);
 }
 .techno-link:hover .overlay,
 .techno-link:focus .overlay {
-transform: translate(0%);
+transform: translateY(0%);
 }
 /*Modal window*/
 .backdrop {
@@ -650,7 +693,7 @@ transform: translate(0%);
   height: 100vh;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.2);
-  transition: opacity 250ms linear,visibility 250ms linear;
+  transition: opacity 250ms var(--timing-func),visibility 250ms var(--timing-func);
 }
 .modal {
   position: absolute;
